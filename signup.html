@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - AgroRent</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    
+<!-- Navigation Bar -->
+<nav class="navbar auth-navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <a href="index.html">
+                <span class="logo-icon">🌾</span>
+                AgroRent
+            </a>
+        </div>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="about.html" class="nav-btn">About</a>
+                <a href="how-it-works.html" class="nav-btn">How it Works</a>
+            </div>
+            <div class="settings-dropdown">
+                <button class="settings-btn" id="settings-btn" aria-label="Settings">
+                    <span class="settings-icon">⋮</span>
+                </button>
+                <div class="dropdown-menu" id="settings-menu">
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help & Support</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Sign Up Section -->
+<section class="auth-section">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1 class="auth-title">Create Account</h1>
+                <p class="auth-subtitle">Join AgroRent and start renting equipment today</p>
+            </div>
+
+            <form class="auth-form" id="signup-form">
+                <div class="form-group">
+                    <label for="fullname" class="form-label">
+                        <i class="fas fa-user"></i>
+                        Full Name
+                    </label>
+                    <input type="text" id="fullname" name="fullname" class="form-input" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">
+                        <i class="fas fa-envelope"></i>
+                        Email Address
+                    </label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" class="form-label">
+                        <i class="fas fa-phone"></i>
+                        Phone Number
+                    </label>
+                    <div class="phone-input-wrapper">
+                        <input type="tel" id="phone" name="phone" class="form-input" placeholder="Enter your phone number" required>
+                        <button type="button" class="send-otp-btn" id="send-otp-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send OTP
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group otp-group" id="otp-group" style="display: none;">
+                    <label for="otp" class="form-label">
+                        <i class="fas fa-key"></i>
+                        Enter OTP
+                    </label>
+                    <div class="otp-input-container">
+                        <input type="text" id="otp1" class="otp-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" id="otp2" class="otp-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" id="otp3" class="otp-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" id="otp4" class="otp-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" id="otp5" class="otp-input" maxlength="1" pattern="[0-9]">
+                        <input type="text" id="otp6" class="otp-input" maxlength="1" pattern="[0-9]">
+                    </div>
+                    <p class="otp-timer" id="otp-timer" style="display: none;">
+                        Resend OTP in <span id="timer-count">60</span> seconds
+                    </p>
+                    <button type="button" class="resend-otp-btn" id="resend-otp-btn" style="display: none;">
+                        Resend OTP
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">
+                        <i class="fas fa-lock"></i>
+                        Password
+                    </label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="password" name="password" class="form-input" placeholder="Create a password" required>
+                        <button type="button" class="password-toggle" id="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password" class="form-label">
+                        <i class="fas fa-lock"></i>
+                        Confirm Password
+                    </label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="confirm-password" name="confirm_password" class="form-input" placeholder="Confirm your password" required>
+                        <button type="button" class="password-toggle" id="confirm-password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="terms" required>
+                        <span>I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></span>
+                    </label>
+                </div>
+
+                <div class="submit-actions">
+                    <button type="submit" class="auth-submit-btn">
+                        <span>Create Account</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    
+                    <div class="sign-in-box">
+                        <span class="sign-in-text">Already have an account?</span>
+                        <a href="login.html" class="sign-in-link">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Sign In</span>
+                        </a>
+                    </div>
+                </div>
+            </form>
+
+            <div class="auth-divider">
+                <span>Or sign up with</span>
+            </div>
+
+            <div class="social-auth">
+                <button class="social-btn google-btn">
+                    <i class="fab fa-google"></i>
+                    <span>Google</span>
+                </button>
+                <button class="social-btn facebook-btn">
+                    <i class="fab fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="auth-illustration">
+            <div class="illustration-content">
+                <div class="illustration-icon">🚜</div>
+                <h2>Farming made Better</h2>
+                <p>Connect with equipment owners and grow your agricultural business</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="script.js"></script>
+<script>
+    // Password toggle functionality
+    document.getElementById('password-toggle').addEventListener('click', function() {
+        const passwordInput = document.getElementById('password');
+        const icon = this.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+
+    document.getElementById('confirm-password-toggle').addEventListener('click', function() {
+        const passwordInput = document.getElementById('confirm-password');
+        const icon = this.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+
+    // OTP functionality
+    let otpTimer;
+    let timeLeft = 60;
+    const otpGroup = document.getElementById('otp-group');
+    const sendOtpBtn = document.getElementById('send-otp-btn');
+    const resendOtpBtn = document.getElementById('resend-otp-btn');
+    const otpTimerEl = document.getElementById('otp-timer');
+    const timerCount = document.getElementById('timer-count');
+    const otpInputs = document.querySelectorAll('.otp-input');
+
+    sendOtpBtn.addEventListener('click', function() {
+        const phone = document.getElementById('phone').value;
+        if (!phone || phone.length < 10) {
+            alert('Please enter a valid phone number');
+            return;
+        }
+        
+        // Simulate sending OTP (in production, this would call your backend)
+        otpGroup.style.display = 'block';
+        sendOtpBtn.style.display = 'none';
+        otpTimerEl.style.display = 'block';
+        startOTPTimer();
+        
+        // Focus first OTP input
+        otpInputs[0].focus();
+    });
+
+    resendOtpBtn.addEventListener('click', function() {
+        const phone = document.getElementById('phone').value;
+        // Resend OTP logic here
+        timeLeft = 60;
+        startOTPTimer();
+        resendOtpBtn.style.display = 'none';
+        otpTimerEl.style.display = 'block';
+    });
+
+    function startOTPTimer() {
+        timerCount.textContent = timeLeft;
+        otpTimer = setInterval(() => {
+            timeLeft--;
+            timerCount.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(otpTimer);
+                otpTimerEl.style.display = 'none';
+                resendOtpBtn.style.display = 'block';
+            }
+        }, 1000);
+    }
+
+    // OTP input navigation
+    otpInputs.forEach((input, index) => {
+        input.addEventListener('input', function() {
+            if (this.value.length === 1 && index < otpInputs.length - 1) {
+                otpInputs[index + 1].focus();
+            }
+        });
+
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' && this.value === '' && index > 0) {
+                otpInputs[index - 1].focus();
+            }
+        });
+    });
+
+    // Form validation
+    document.getElementById('signup-form').addEventListener('submit', function(e) {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+        
+        // Check if OTP is verified
+        const otpValues = Array.from(otpInputs).map(input => input.value).join('');
+        if (otpValues.length !== 6) {
+            e.preventDefault();
+            alert('Please enter the complete OTP');
+            return false;
+        }
+        
+        if (password !== confirmPassword) {
+            e.preventDefault();
+            alert('Passwords do not match!');
+            return false;
+        }
+        
+        if (password.length < 6) {
+            e.preventDefault();
+            alert('Password must be at least 6 characters long!');
+            return false;
+        }
+        
+        // Verify OTP (in production, verify with backend)
+        // For demo purposes, any 6-digit OTP is accepted
+        e.preventDefault();
+        
+        // Save username for later use
+        const fullname = document.getElementById('fullname').value;
+        localStorage.setItem('username', fullname || 'User');
+        
+        // Redirect to account type selection
+        window.location.href = 'account-type.html';
+    });
+</script>
+</body>
+</html>
+

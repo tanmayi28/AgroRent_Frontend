@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgroRent</title>
-    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     
@@ -18,9 +19,48 @@
             </a>
         </div>
         <div class="nav-right">
-            <div class="auth-buttons">
-                <a href="sign.html" class="nav-btn login-btn">Sign In</a>
-                <a href="signup.html" class="nav-btn signup-btn">Sign Up</a>
+            <div class="nav-links">
+                <a href="about.html" class="nav-btn">About</a>
+                <a href="how-it-works.html" class="nav-btn">How it Works</a>
+            </div>
+            <!-- Profile Dropdown (shown when logged in) -->
+            <div class="profile-dropdown" id="profile-dropdown" style="display: none;">
+                <button class="profile-btn" id="profile-btn">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="username" id="username">User</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-menu" id="profile-menu">
+                    <a href="#" class="dropdown-item" id="view-profile-btn">
+                        <i class="fas fa-user"></i>
+                        <span>View Profile</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item logout" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Settings Dropdown (shown when not logged in) -->
+            <div class="settings-dropdown" id="settings-dropdown">
+                <button class="settings-btn" id="settings-btn" aria-label="Settings">
+                    <span class="settings-icon">⋮</span>
+                </button>
+                <div class="dropdown-menu" id="settings-menu">
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help & Support</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -30,22 +70,60 @@
         <div class="video-background">
             <!-- Placeholder video - in production, replace with actual video URL -->
             <video autoplay muted loop>
-                <source src="../assets/Hero page video.mp4" type="video/mp4">
+                <source src="assets/Hero page video.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
         <div class="video-overlay"></div>
         
         <div class="hero-content">
-            <img src="../assets/hero text.png" alt="AgroRent Logo" class="logo">
+            <img src="assets/hero text.png" alt="AgroRent Logo" class="logo">
+            <p class="tagline">Renting made Easy, Farming made Better</p>
             <div class="cta-buttons">
-                <a href="signup.html" class="cta-button cta-secondary">Get Started</a>
+                <a href="signup.html" class="cta-button cta-secondary" id="get-started-btn">Get Started</a>
+            </div>
+            
+            <!-- Logged In Options (shown on scroll when logged in) -->
+            <div class="hero-options" id="hero-options">
+                <div class="hero-option-card rent-option">
+                    <div class="option-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h3 class="option-title">Rent Equipment</h3>
+                    <p class="option-description">Browse and rent agricultural equipment from verified owners</p>
+                    <button class="option-btn rent-btn" id="hero-rent-btn">
+                        <span>Browse Equipment</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <div class="hero-option-card list-option">
+                    <div class="option-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3 class="option-title">List Equipment</h3>
+                    <p class="option-description">List your equipment and start earning from rentals</p>
+                    <button class="option-btn list-btn" id="hero-list-btn">
+                        <span>List Your Equipment</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
 
-    
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions" id="floating-actions">
+        <button class="fab-btn fab-rent" id="fab-rent" title="Rent Equipment">
+            <i class="fas fa-tractor"></i>
+            <span class="fab-label">Rent Equipment</span>
+        </button>
+        <button class="fab-btn fab-list" id="fab-list" title="List Equipment">
+            <i class="fas fa-plus-circle"></i>
+            <span class="fab-label">List Equipment</span>
+        </button>
+    </div>
 
-    <script src="../static/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

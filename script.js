@@ -5,7 +5,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initVideoHandling();
     initNavbar();
     initProfileDropdown();
+    initSettingsDropdown();
     initFlashMessages();
+    initFloatingActions();
+    initHeroOptions();
+    checkLoginState();
 });
 
 // Smooth scrolling for anchor links
@@ -30,7 +34,7 @@ function initSmoothScrolling() {
 // Profile Dropdown functionality
 function initProfileDropdown() {
     const profileBtn = document.getElementById('profile-btn');
-    const dropdownMenu = document.getElementById('dropdown-menu');
+    const dropdownMenu = document.getElementById('profile-menu');
     
     if (!profileBtn || !dropdownMenu) return;
 
@@ -51,6 +55,48 @@ function initProfileDropdown() {
 
     // Prevent dropdown from closing when clicking inside
     dropdownMenu.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+    
+    // Handle View Profile click
+    const viewProfileBtn = document.getElementById('view-profile-btn');
+    if (viewProfileBtn) {
+        viewProfileBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Close dropdown
+            dropdownMenu.classList.remove('active');
+            profileBtn.classList.remove('active');
+            // Navigate to profile page (you can create this page later)
+            // window.location.href = 'profile.html';
+            alert('Profile page coming soon!');
+        });
+    }
+}
+
+// Settings Dropdown functionality
+function initSettingsDropdown() {
+    const settingsBtn = document.getElementById('settings-btn');
+    const settingsMenu = document.getElementById('settings-menu');
+    
+    if (!settingsBtn || !settingsMenu) return;
+
+    // Toggle dropdown on button click
+    settingsBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        settingsMenu.classList.toggle('active');
+        settingsBtn.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!settingsBtn.contains(e.target) && !settingsMenu.contains(e.target)) {
+            settingsMenu.classList.remove('active');
+            settingsBtn.classList.remove('active');
+        }
+    });
+
+    // Prevent dropdown from closing when clicking inside
+    settingsMenu.addEventListener('click', function(e) {
         e.stopPropagation();
     });
 }
@@ -293,3 +339,213 @@ function handleMissingElements() {
 
 // Call error handling on load
 window.addEventListener('load', handleMissingElements);
+
+// Check login state and show/hide profile icon
+function checkLoginState() {
+    // Check if user is logged in (in production, check with backend/session)
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const username = localStorage.getItem('username') || 'User';
+    
+    const profileDropdown = document.getElementById('profile-dropdown');
+    const settingsDropdown = document.getElementById('settings-dropdown');
+    
+    if (profileDropdown && settingsDropdown) {
+        if (isLoggedIn) {
+            profileDropdown.style.display = 'block';
+            settingsDropdown.style.display = 'none';
+            const usernameEl = document.getElementById('username');
+            if (usernameEl) {
+                usernameEl.textContent = username;
+            }
+        } else {
+            profileDropdown.style.display = 'none';
+            settingsDropdown.style.display = 'block';
+        }
+    }
+    
+    // Update hero options visibility
+    const heroOptions = document.getElementById('hero-options');
+    const getStartedBtn = document.getElementById('get-started-btn');
+    if (heroOptions) {
+        if (isLoggedIn) {
+            heroOptions.classList.add('visible');
+            if (getStartedBtn) {
+                getStartedBtn.style.opacity = '0';
+                getStartedBtn.style.pointerEvents = 'none';
+            }
+        } else {
+            heroOptions.classList.remove('visible');
+            if (getStartedBtn) {
+                getStartedBtn.style.opacity = '1';
+                getStartedBtn.style.pointerEvents = 'all';
+            }
+        }
+    }
+}
+
+// Set login state (call this after successful login/signup)
+function setLoginState(username) {
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('username', username);
+    checkLoginState();
+}
+
+// Logout functionality
+function initLogout() {
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Clear login state
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            
+            // Close dropdown
+            const dropdownMenu = document.getElementById('profile-menu');
+            const profileBtn = document.getElementById('profile-btn');
+            if (dropdownMenu) dropdownMenu.classList.remove('active');
+            if (profileBtn) profileBtn.classList.remove('active');
+            
+            // Update UI to show logged out state
+            checkLoginState();
+            
+            // If already on index page, just refresh the state
+            // Otherwise redirect to index
+            if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/')) {
+                // Scroll to top to show the Get Started button
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+    }
+}
+
+// Initialize logout on page load
+document.addEventListener('DOMContentLoaded', initLogout);
+
+// Floating Action Buttons
+function initFloatingActions() {
+    const floatingActions = document.getElementById('floating-actions');
+    if (!floatingActions) return;
+
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    function updateFloatingActions() {
+        const scrollY = window.scrollY;
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        
+        // Only show if user is logged in
+        if (isLoggedIn && scrollY > 300) {
+            floatingActions.classList.add('visible');
+        } else {
+            floatingActions.classList.remove('visible');
+        }
+        
+        ticking = false;
+    }
+
+    function onScroll() {
+        if (!ticking) {
+            window.requestAnimationFrame(updateFloatingActions);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', onScroll);
+    
+    // Check initial state
+    updateFloatingActions();
+
+    // Handle button clicks
+    const fabRent = document.getElementById('fab-rent');
+    const fabList = document.getElementById('fab-list');
+
+    if (fabRent) {
+        fabRent.addEventListener('click', function() {
+            // Redirect to rent equipment page
+            window.location.href = 'browse-equipment.html'; // You can create this page
+        });
+    }
+
+    if (fabList) {
+        fabList.addEventListener('click', function() {
+            // Redirect to list equipment page
+            window.location.href = 'list-equipment.html'; // You can create this page
+        });
+    }
+}
+
+// Hero Options (shown on scroll when logged in)
+function initHeroOptions() {
+    const heroOptions = document.getElementById('hero-options');
+    const getStartedBtn = document.getElementById('get-started-btn');
+    if (!heroOptions) return;
+
+    let ticking = false;
+
+    function updateHeroOptions() {
+        const scrollY = window.scrollY;
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        
+        // Show options when logged in (immediately, no scroll required)
+        if (isLoggedIn) {
+            heroOptions.classList.add('visible');
+            // Hide "Get Started" button when options are visible
+            if (getStartedBtn) {
+                getStartedBtn.style.opacity = '0';
+                getStartedBtn.style.pointerEvents = 'none';
+            }
+        } else {
+            heroOptions.classList.remove('visible');
+            // Show "Get Started" button when options are hidden
+            if (getStartedBtn) {
+                getStartedBtn.style.opacity = '1';
+                getStartedBtn.style.pointerEvents = 'all';
+            }
+        }
+        
+        ticking = false;
+    }
+
+    function onScroll() {
+        if (!ticking) {
+            window.requestAnimationFrame(updateHeroOptions);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', onScroll);
+    
+    // Check initial state immediately
+    updateHeroOptions();
+    
+    // Also check on login state changes
+    window.addEventListener('storage', function() {
+        updateHeroOptions();
+    });
+    
+    // Re-check when page becomes visible
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+            updateHeroOptions();
+        }
+    });
+
+    // Handle button clicks
+    const heroRentBtn = document.getElementById('hero-rent-btn');
+    const heroListBtn = document.getElementById('hero-list-btn');
+
+    if (heroRentBtn) {
+        heroRentBtn.addEventListener('click', function() {
+            window.location.href = 'browse-equipment.html';
+        });
+    }
+
+    if (heroListBtn) {
+        heroListBtn.addEventListener('click', function() {
+            window.location.href = 'list-equipment.html';
+        });
+    }
+}

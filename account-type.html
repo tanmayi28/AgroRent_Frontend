@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Path - AgroRent</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    
+<!-- Navigation Bar -->
+<nav class="navbar auth-navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <a href="index.html">
+                <span class="logo-icon">🌾</span>
+                AgroRent
+            </a>
+        </div>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="about.html" class="nav-btn">About</a>
+                <a href="how-it-works.html" class="nav-btn">How it Works</a>
+            </div>
+            <div class="settings-dropdown">
+                <button class="settings-btn" id="settings-btn" aria-label="Settings">
+                    <span class="settings-icon">⋮</span>
+                </button>
+                <div class="dropdown-menu" id="settings-menu">
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help & Support</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Account Type Selection Section -->
+<section class="account-type-section">
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="assets/Hero page video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="video-overlay"></div>
+    
+    <div class="account-type-container">
+        <div class="account-type-header">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1 class="account-type-title">Welcome to AgroRent!</h1>
+            <p class="account-type-subtitle">Choose how you want to use AgroRent</p>
+        </div>
+
+        <div class="account-type-cards">
+            <!-- Renter Card -->
+            <div class="account-card renter-card" data-type="renter">
+                <div class="card-icon-wrapper">
+                    <div class="card-icon renter-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                </div>
+                <h2 class="card-title">Rent Equipment</h2>
+                <p class="card-description">
+                    Looking for agricultural equipment? Browse and rent from verified equipment owners. 
+                    Find the perfect machinery for your farming needs.
+                </p>
+                <ul class="card-features">
+                    <li><i class="fas fa-check"></i> Browse thousands of equipment</li>
+                    <li><i class="fas fa-check"></i> Easy booking process</li>
+                    <li><i class="fas fa-check"></i> Verified equipment owners</li>
+                    <li><i class="fas fa-check"></i> Secure payments</li>
+                </ul>
+                <button class="account-select-btn renter-btn">
+                    <span>Continue as Renter</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Owner Card -->
+            <div class="account-card owner-card" data-type="owner">
+                <div class="card-icon-wrapper">
+                    <div class="card-icon owner-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                </div>
+                <h2 class="card-title">List Your Equipment</h2>
+                <p class="card-description">
+                    Have equipment to rent? List your agricultural machinery and start earning. 
+                    Connect with farmers who need your equipment.
+                </p>
+                <ul class="card-features">
+                    <li><i class="fas fa-check"></i> Easy listing process</li>
+                    <li><i class="fas fa-check"></i> Reach more customers</li>
+                    <li><i class="fas fa-check"></i> Manage bookings easily</li>
+                    <li><i class="fas fa-check"></i> Secure payments</li>
+                </ul>
+                <button class="account-select-btn owner-btn">
+                    <span>Continue as Owner</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="account-type-footer">
+            <p>You can change this later in your account settings</p>
+        </div>
+    </div>
+</section>
+
+<script src="script.js"></script>
+<script>
+    // Account type selection
+    const accountCards = document.querySelectorAll('.account-card');
+    const selectButtons = document.querySelectorAll('.account-select-btn');
+
+    accountCards.forEach(card => {
+        card.addEventListener('click', function() {
+            // Remove active class from all cards
+            accountCards.forEach(c => c.classList.remove('active'));
+            // Add active class to clicked card
+            this.classList.add('active');
+        });
+    });
+
+    selectButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const card = this.closest('.account-card');
+            const accountType = card.dataset.type;
+            
+            // Add loading state
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            this.disabled = true;
+            
+            // Simulate processing (in production, this would send data to backend)
+            setTimeout(() => {
+                // Set account type and login state
+                localStorage.setItem('accountType', accountType);
+                localStorage.setItem('isLoggedIn', 'true');
+                
+                // Get username from previous signup (or use default)
+                const username = localStorage.getItem('username') || 'User';
+                localStorage.setItem('username', username);
+                
+                // Redirect to homepage
+                window.location.href = 'index.html';
+            }, 1500);
+        });
+    });
+</script>
+</body>
+</html>
+

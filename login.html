@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AgroRent</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    
+<!-- Navigation Bar -->
+<nav class="navbar auth-navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <a href="index.html">
+                <span class="logo-icon">🌾</span>
+                AgroRent
+            </a>
+        </div>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="about.html" class="nav-btn">About</a>
+                <a href="how-it-works.html" class="nav-btn">How it Works</a>
+            </div>
+            <div class="settings-dropdown">
+                <button class="settings-btn" id="settings-btn" aria-label="Settings">
+                    <span class="settings-icon">⋮</span>
+                </button>
+                <div class="dropdown-menu" id="settings-menu">
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help & Support</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Login Section -->
+<section class="auth-section">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1 class="auth-title">Welcome Back!</h1>
+                <p class="auth-subtitle">Sign in to continue to AgroRent</p>
+            </div>
+
+            <form class="auth-form" id="login-form">
+                <div class="form-group">
+                    <label for="email" class="form-label">
+                        <i class="fas fa-envelope"></i>
+                        Email Address
+                    </label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">
+                        <i class="fas fa-lock"></i>
+                        Password
+                    </label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+                        <button type="button" class="password-toggle" id="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="auth-submit-btn">
+                    <span>Sign In</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="auth-divider">
+                <span>Or continue with</span>
+            </div>
+
+            <div class="social-auth">
+                <button class="social-btn google-btn">
+                    <i class="fab fa-google"></i>
+                    <span>Google</span>
+                </button>
+                <button class="social-btn facebook-btn">
+                    <i class="fab fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </button>
+            </div>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="signup.html" class="auth-link">Sign Up</a></p>
+            </div>
+        </div>
+
+        <div class="auth-illustration">
+            <div class="illustration-content">
+                <div class="illustration-icon">🌾</div>
+                <h2>Renting made Easy</h2>
+                <p>Access thousands of agricultural equipment at your fingertips</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="script.js"></script>
+<script>
+    // Password toggle functionality
+    document.getElementById('password-toggle').addEventListener('click', function() {
+        const passwordInput = document.getElementById('password');
+        const icon = this.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+
+    // Form submission
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get username from email (or use actual username field)
+        const email = document.getElementById('email').value;
+        const username = email.split('@')[0] || 'User';
+        
+        // Set login state
+        if (typeof setLoginState === 'function') {
+            setLoginState(username);
+        } else {
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('username', username);
+        }
+        
+        // Redirect to homepage
+        window.location.href = 'index.html';
+    });
+</script>
+</body>
+</html>
+
