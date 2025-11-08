@@ -366,7 +366,6 @@ function checkLoginState() {
     // Update hero options visibility
     const heroOptions = document.getElementById('hero-options');
     const getStartedBtn = document.getElementById('get-started-btn');
-    const heroEquipmentCards = document.getElementById('hero-equipment-cards');
     
     if (heroOptions) {
         if (isLoggedIn) {
@@ -381,15 +380,6 @@ function checkLoginState() {
                 getStartedBtn.style.opacity = '1';
                 getStartedBtn.style.pointerEvents = 'all';
             }
-        }
-    }
-    
-    // Hide/show static equipment cards based on login state
-    if (heroEquipmentCards) {
-        if (isLoggedIn) {
-            heroEquipmentCards.style.display = 'none';
-        } else {
-            heroEquipmentCards.style.display = 'flex';
         }
     }
 }
