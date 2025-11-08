@@ -99,15 +99,17 @@ html, body {
     gap: 0.5rem;
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--accent-green-light);
+    color: white;
     text-decoration: none;
     transition: all 0.3s ease;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    opacity: 0.7;
 }
 
 .nav-logo a:hover {
-    color: #7dd87f;
+    color: white;
     transform: scale(1.05);
+    opacity: 1;
 }
 
 .logo-icon {
@@ -755,7 +757,78 @@ html, body {
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Hero Equipment Cards - Small cards on video background */
+.hero-equipment-cards {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    pointer-events: none;
+}
+
+.hero-equipment-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    cursor: default;
+    min-width: 180px;
+    max-width: 220px;
+}
+
+.hero-equipment-card:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-5px);
+}
+
+.hero-equipment-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.8rem;
+    font-size: 1.5rem;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.hero-rent-card .hero-equipment-icon {
+    background: linear-gradient(135deg, rgba(45, 134, 89, 0.9), rgba(76, 175, 80, 0.9));
+}
+
+.hero-list-card .hero-equipment-icon {
+    background: linear-gradient(135deg, rgba(212, 165, 116, 0.9), rgba(255, 140, 66, 0.9));
+}
+
+.hero-equipment-card:hover .hero-equipment-icon {
+    transform: scale(1.1);
+}
+
+.hero-equipment-title {
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-equipment-description {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .cta-button {
@@ -964,6 +1037,7 @@ html, body {
         font-size: 1.5rem;
     }
 }
+
 
 /* Equipment Categories Section */
 .categories-section {
@@ -1210,6 +1284,26 @@ html {
         min-width: 250px;
     }
 
+    .equipment-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .equipment-card {
+        padding: 2rem;
+    }
+
+    .equipment-card-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+    }
+
+    .equipment-card-title {
+        font-size: 1.6rem;
+    }
+
     .categories-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -1258,6 +1352,32 @@ html {
         padding: 1rem 2rem;
         font-size: 1rem;
         min-width: 200px;
+    }
+
+    .hero-equipment-cards {
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .hero-equipment-card {
+        min-width: 150px;
+        max-width: 180px;
+        padding: 1rem 1.2rem;
+    }
+
+    .hero-equipment-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .hero-equipment-title {
+        font-size: 0.9rem;
+    }
+
+    .hero-equipment-description {
+        font-size: 0.75rem;
     }
 
     .auth-box {
@@ -2445,7 +2565,7 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(31, 93, 63, 0.7);
+    background: rgba(0, 0, 0, 0.6);
     z-index: -1;
 }
 
@@ -2477,10 +2597,13 @@ html {
 
 .success-icon {
     font-size: 5rem;
-    color: #4caf50;
+    color: white;
     margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
     animation: scaleIn 0.5s ease;
-    filter: drop-shadow(0 4px 15px rgba(76, 175, 80, 0.5));
+    filter: drop-shadow(0 4px 15px rgba(255, 255, 255, 0.5));
+    position: relative;
+    top: 20px;
 }
 
 @keyframes scaleIn {
@@ -2711,6 +2834,8 @@ html {
 
     .success-icon {
         font-size: 4rem;
+        color: white;
+        top: 15px;
     }
 
     .card-icon {
