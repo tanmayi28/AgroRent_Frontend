@@ -2985,3 +2985,532 @@ html {
         display: none;
     }
 }
+
+/* ============================================
+   MODERN AUTH PAGES - TWO COLUMN LAYOUT
+   ============================================ */
+
+/* Modern Auth Section */
+.auth-section-modern {
+    min-height: 100vh;
+    padding-top: 100px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.auth-container-modern {
+    max-width: 1400px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    min-height: calc(100vh - 100px);
+}
+
+/* Left Column: Carousel */
+.auth-carousel-column {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    background: #000;
+}
+
+.carousel-slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.carousel-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.carousel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(45, 134, 89, 0.85) 0%, rgba(31, 93, 63, 0.75) 100%);
+    z-index: 1;
+}
+
+.carousel-review {
+    position: relative;
+    z-index: 2;
+    padding: 3rem;
+    text-align: center;
+    color: white;
+    max-width: 90%;
+}
+
+.review-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.review-stars {
+    font-size: 1.5rem;
+    color: #ffd700;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.2rem;
+}
+
+.review-text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.review-author {
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* Carousel Navigation */
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.carousel-nav:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-prev {
+    left: 20px;
+}
+
+.carousel-next {
+    right: 20px;
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.75rem;
+    z-index: 10;
+}
+
+.carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.carousel-indicator:hover {
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(1.2);
+}
+
+.carousel-indicator.active {
+    background: white;
+    width: 32px;
+    border-radius: 6px;
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Right Column: Form */
+.auth-form-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.auth-card-modern {
+    background: white;
+    border-radius: 24px;
+    padding: 3.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.auth-header-modern {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.auth-title-modern {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-green-dark);
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+/* Modern Form Styles */
+.auth-form-modern {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group-modern {
+    position: relative;
+}
+
+.floating-label-wrapper {
+    position: relative;
+}
+
+.form-input-modern {
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    background: white;
+    color: var(--dark-text);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.form-input-modern:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 4px rgba(45, 134, 89, 0.1);
+}
+
+.form-input-modern::placeholder {
+    color: transparent;
+}
+
+.floating-label {
+    position: absolute;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: white;
+    padding: 0 0.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+
+.form-input-modern:focus + .floating-label,
+.form-input-modern.has-value + .floating-label,
+.form-input-modern.focused + .floating-label {
+    top: 0;
+    transform: translateY(-50%);
+    font-size: 0.85rem;
+    color: var(--primary-green);
+    font-weight: 500;
+}
+
+.password-toggle-modern {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+    z-index: 2;
+}
+
+.password-toggle-modern:hover {
+    color: var(--primary-green);
+}
+
+/* Checkbox and Options */
+.checkbox-label-modern {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--medium-text);
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.checkbox-label-modern input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary-green);
+    border-radius: 4px;
+}
+
+.checkbox-label-modern a {
+    color: var(--primary-green);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.checkbox-label-modern a:hover {
+    text-decoration: underline;
+}
+
+.form-options-modern {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.forgot-password-modern {
+    color: var(--primary-green);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.forgot-password-modern:hover {
+    text-decoration: underline;
+}
+
+/* Submit Button */
+.auth-submit-btn-modern {
+    width: 100%;
+    padding: 1.2rem 2rem;
+    background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 4px 15px rgba(45, 134, 89, 0.3);
+    margin-top: 0.5rem;
+}
+
+.auth-submit-btn-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(45, 134, 89, 0.4);
+    background: linear-gradient(135deg, var(--accent-green), var(--primary-green));
+}
+
+.auth-submit-btn-modern:active {
+    transform: translateY(0);
+}
+
+/* Footer */
+.auth-footer-modern {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.auth-footer-modern p {
+    color: var(--medium-text);
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+.auth-link-modern {
+    color: var(--primary-green);
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.auth-link-modern:hover {
+    text-decoration: underline;
+    color: var(--primary-green-dark);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .auth-container-modern {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .auth-carousel-column {
+        order: 2;
+    }
+
+    .auth-form-column {
+        order: 1;
+    }
+
+    .carousel-container {
+        height: 400px;
+    }
+
+    .review-text {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .auth-section-modern {
+        padding: 1rem;
+        padding-top: 100px;
+    }
+
+    .auth-card-modern {
+        padding: 2rem;
+    }
+
+    .auth-title-modern {
+        font-size: 1.75rem;
+    }
+
+    .carousel-container {
+        height: 350px;
+    }
+
+    .carousel-review {
+        padding: 2rem;
+    }
+
+    .review-content {
+        padding: 1.5rem;
+    }
+
+    .review-text {
+        font-size: 1rem;
+    }
+
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .carousel-prev {
+        left: 10px;
+    }
+
+    .carousel-next {
+        right: 10px;
+    }
+
+    .form-options-modern {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-card-modern {
+        padding: 1.5rem;
+    }
+
+    .auth-title-modern {
+        font-size: 1.5rem;
+    }
+
+    .carousel-container {
+        height: 300px;
+    }
+
+    .review-content {
+        padding: 1.25rem;
+    }
+
+    .review-text {
+        font-size: 0.9rem;
+    }
+
+    .review-stars {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-input-modern {
+        padding: 1rem 1.25rem;
+    }
+
+    .floating-label {
+        left: 1.25rem;
+    }
+
+    .password-toggle-modern {
+        right: 1.25rem;
+    }
+}
